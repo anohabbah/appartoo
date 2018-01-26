@@ -1,0 +1,21 @@
+{% extends "@FOSUser/layout.html.twig" %}
+
+{% block title %}Marsupilami > Adding Friends - Appartoo Test{% endblock %}
+
+{% block fos_user_content %}
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Add Friends</h3>
+                </div>
+                <div class="panel-body">
+                    {{ form_start(form) }}
+                        {{ form_widget(form) }}
+                        <input class="btn btn-primary" type="submit" value="Make Friends">
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

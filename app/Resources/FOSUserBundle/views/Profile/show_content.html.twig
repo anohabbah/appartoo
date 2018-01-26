@@ -1,0 +1,55 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<div class="fos_user_user_show">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Profile
+                    <a class="pull-right btn btn-primary btn-xs"
+                       href="{{ path('fos_user_profile_edit', {'id': user.id}) }}">Edit Profile</a>
+                </div>
+                <div class="panel-body text-center">
+                    <p>{{ 'profile.show.username'|trans }}: {{ user.username }}</p>
+                    <p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
+                    <p>Age: {{ user.age }}</p>
+                    <p>Sex: {{ user.sexe.type }}</p>
+                    <p>Family: {{ user.famille }}</p>
+                    <p>Race: {{ user.race }}</p>
+                    <p>Food: {{ user.nourriture }}</p>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Amis</h3>
+                </div>
+                <div class="panel-body">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Username</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for friend in user.amis %}
+                                <tr>
+                                    <td>{{ friend.username }}</td>
+                                    <td>
+                                        <a href="{{ path('friends.show', {'id': friend.id}) }}">profile</a> |
+                                        <a href="{{ path('friends.destroy', {'id': friend.id}) }}"
+                                            onclick="event.preventDefault();document.getElementById('friend_' + {{ friend.id }}).submit()">remove</a>
+                                        <form action="{{ path('friends.destroy', {'id': friend.id}) }}"
+                                              method="post" id="friend_{{ friend.id }}">
+                                        </form>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

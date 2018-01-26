@@ -1,0 +1,31 @@
+{% extends "@FOSUser/layout.html.twig" %}
+
+{% block title %}Marsupilami > Friend Profile - Appartoo Test{% endblock %}
+
+{% block fos_user_content %}
+
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Profile
+                <a class="pull-right btn btn-primary btn-xs"
+                   href="{{ path('friends.destroy', {'id': user.id}) }}"
+                   onclick="event.preventDefault();document.getElementById('friend_' + {{ user.id }}).submit()">Remove Friend</a>
+                <form action="{{ path('friends.destroy', {'id': user.id}) }}"
+                      method="post" id="friend_{{ user.id }}">
+                </form>
+            </div>
+            <div class="panel-body text-center">
+                <p>Friend Username: {{ user.username }}</p>
+                <p>Friend Email: {{ user.email }}</p>
+                <p>Age: {{ user.age }}</p>
+                <p>Sex: {{ user.sexe.type }}</p>
+                <p>Family: {{ user.famille }}</p>
+                <p>Race: {{ user.race }}</p>
+                <p>Food: {{ user.nourriture }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
